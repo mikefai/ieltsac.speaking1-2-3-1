@@ -1,0 +1,3440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🇬🇧 IELTS Speaking Adventure with Gulsum!</title>
+<style>
+:root {
+    --primary: #1a237e;
+    --secondary: #c62828;
+    --accent: #00695c;
+    --gold: #f9a825;
+    --bg: #f5f5f5;
+    --card-bg: #ffffff;
+    --part1: #1565c0;
+    --part2: #6a1b9a;
+    --part3: #bf360c;
+    --shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    color: #333;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* ===== ANIMATED BACKGROUND ===== */
+.bg-clouds {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.cloud {
+    position: absolute;
+    background: rgba(255,255,255,0.7);
+    border-radius: 50px;
+    animation: floatCloud linear infinite;
+}
+
+.cloud::before, .cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255,255,255,0.7);
+    border-radius: 50%;
+}
+
+.cloud1 { width: 120px; height: 40px; top: 10%; animation-duration: 60s; }
+.cloud1::before { width: 50px; height: 50px; top: -25px; left: 20px; }
+.cloud1::after { width: 70px; height: 70px; top: -35px; left: 50px; }
+
+.cloud2 { width: 100px; height: 30px; top: 30%; animation-duration: 80s; animation-delay: -20s; }
+.cloud2::before { width: 40px; height: 40px; top: -20px; left: 15px; }
+.cloud2::after { width: 55px; height: 55px; top: -25px; left: 40px; }
+
+.cloud3 { width: 140px; height: 45px; top: 60%; animation-duration: 90s; animation-delay: -40s; }
+.cloud3::before { width: 60px; height: 60px; top: -30px; left: 25px; }
+.cloud3::after { width: 80px; height: 80px; top: -40px; left: 60px; }
+
+@keyframes floatCloud {
+    from { left: -200px; }
+    to { left: 100%; }
+}
+
+/* ===== HEADER ===== */
+.header {
+    background: linear-gradient(135deg, #1a237e 0%, #c62828 50%, #1a237e 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+    color: white;
+    padding: 60px 20px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.header::before {
+    content: "🇬🇧";
+    position: absolute;
+    font-size: 250px;
+    opacity: 0.08;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.header h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+    animation: slideDown 1s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.header .subtitle {
+    font-size: 1.3em;
+    opacity: 0.95;
+    position: relative;
+    animation: fadeIn 1.5s ease-out 0.3s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 0.95; }
+}
+
+.header .student-info {
+    margin-top: 25px;
+    padding: 15px 30px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50px;
+    display: inline-block;
+    backdrop-filter: blur(10px);
+    position: relative;
+    animation: bounceIn 1s ease-out 0.6s both;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+@keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.3); }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Flying Plane */
+.plane {
+    position: absolute;
+    font-size: 50px;
+    top: 20%;
+    animation: flyAcross 15s linear infinite;
+    z-index: 2;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+@keyframes flyAcross {
+    0% { left: -100px; transform: translateY(0) rotate(-5deg); }
+    25% { transform: translateY(-20px) rotate(0deg); }
+    50% { transform: translateY(10px) rotate(5deg); }
+    75% { transform: translateY(-15px) rotate(0deg); }
+    100% { left: 110%; transform: translateY(0) rotate(-5deg); }
+}
+
+/* Trail behind plane */
+.plane::after {
+    content: '';
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    width: 150px;
+    height: 3px;
+    background: linear-gradient(to left, white, transparent);
+    opacity: 0.6;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: white;
+    box-shadow: var(--shadow);
+    padding: 10px 20px;
+}
+
+.progress-bar {
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--part1), var(--part2), var(--part3));
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 10px;
+}
+
+@keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.progress-text {
+    text-align: center;
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+/* ===== NAVIGATION ===== */
+.nav-bar {
+    background: white;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-bottom: 2px solid #eee;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s;
+    font-size: 0.95em;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-bar a::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+}
+
+.nav-bar a:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.nav-bar a:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.nav-bar a.p1 { background: var(--part1); }
+.nav-bar a.p2 { background: var(--part2); }
+.nav-bar a.p3 { background: var(--part3); }
+.nav-bar a.tips { background: var(--accent); }
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== INTRO ===== */
+.intro-box {
+    background: linear-gradient(135deg, #fff9c4, #fff59d);
+    border-left: 6px solid var(--gold);
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.intro-box::after {
+    content: '✈️';
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 60px;
+    opacity: 0.2;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.intro-box h2 {
+    color: #f57f17;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+}
+
+.intro-box ul { padding-left: 20px; }
+.intro-box li { margin-bottom: 10px; transition: transform 0.3s; }
+.intro-box li:hover { transform: translateX(10px); }
+
+/* ===== PART SECTIONS ===== */
+.part-section { margin-bottom: 50px; }
+
+.part-header {
+    padding: 30px;
+    border-radius: 15px 15px 0 0;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.part-header::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.part-header.p1 { background: linear-gradient(135deg, #1565c0, #42a5f5); }
+.part-header.p2 { background: linear-gradient(135deg, #6a1b9a, #ab47bc); }
+.part-header.p3 { background: linear-gradient(135deg, #bf360c, #ff7043); }
+
+.part-header h2 {
+    font-size: 2.2em;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+.part-header .part-desc {
+    opacity: 0.95;
+    font-size: 1.05em;
+    position: relative;
+    z-index: 1;
+}
+
+.part-header .duration {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: rgba(255,255,255,0.25);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    z-index: 1;
+    animation: pulse 2s infinite;
+}
+
+/* ===== TOPIC BLOCK ===== */
+.topic-block {
+    background: var(--card-bg);
+    border-radius: 0 0 15px 15px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+}
+
+.topic-title {
+    font-size: 1.6em;
+    color: var(--primary);
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.topic-title .emoji {
+    display: inline-block;
+    animation: wiggle 2s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    75% { transform: rotate(10deg); }
+}
+
+.grammar-focus {
+    background: #e8f5e9;
+    border-left: 4px solid #43a047;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-size: 0.95em;
+    transition: transform 0.3s;
+}
+
+.grammar-focus:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(67, 160, 71, 0.2);
+}
+
+.grammar-focus strong { color: #2e7d32; }
+
+/* ===== QUESTION CARD ===== */
+.question-card {
+    background: #fafafa;
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.question-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    transition: left 0.6s;
+}
+
+.question-card:hover::before {
+    left: 100%;
+}
+
+.question-card:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transform: translateY(-5px);
+    border-color: var(--gold);
+}
+
+.q-number {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    margin-right: 12px;
+    transition: all 0.3s;
+    animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.question-card:hover .q-number {
+    transform: rotate(360deg) scale(1.1);
+    background: var(--gold);
+}
+
+.p1-section .q-number { background: var(--part1); }
+.p2-section .q-number { background: var(--part2); }
+.p3-section .q-number { background: var(--part3); }
+
+.question-text {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #212121;
+    margin-bottom: 15px;
+    display: inline;
+}
+
+/* ===== FLIP VOCABULARY CARDS ===== */
+.vocab-section {
+    background: #e3f2fd;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 15px 0;
+}
+
+.vocab-title {
+    font-weight: bold;
+    color: var(--part1);
+    margin-bottom: 12px;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.flip-card {
+    perspective: 1000px;
+    height: 90px;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.flip-card-front {
+    background: linear-gradient(135deg, #1976d2, #42a5f5);
+    color: white;
+    box-shadow: 0 4px 10px rgba(25, 118, 210, 0.3);
+}
+
+.flip-card-front .vocab-word {
+    font-weight: bold;
+    font-size: 1.05em;
+}
+
+.flip-card-front .flip-hint {
+    font-size: 0.75em;
+    opacity: 0.8;
+    margin-top: 4px;
+}
+
+.flip-card-back {
+    background: linear-gradient(135deg, #fff59d, #fff176);
+    color: #333;
+    transform: rotateY(180deg);
+    box-shadow: 0 4px 10px rgba(249, 168, 37, 0.3);
+}
+
+.flip-card-back .vocab-def {
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+/* ===== ANSWER PROMPTS (REVEAL) ===== */
+.answer-prompts {
+    background: #fff3e0;
+    border-radius: 12px;
+    margin-top: 15px;
+    border-left: 4px solid #ff9800;
+    overflow: hidden;
+}
+
+.prompts-toggle {
+    padding: 15px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #e65100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+    transition: background 0.3s;
+}
+
+.prompts-toggle:hover {
+    background: rgba(255, 152, 0, 0.1);
+}
+
+.prompts-toggle .arrow {
+    transition: transform 0.3s;
+    font-size: 1.2em;
+}
+
+.answer-prompts.open .prompts-toggle .arrow {
+    transform: rotate(90deg);
+}
+
+.prompts-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+    padding: 0 20px;
+}
+
+.answer-prompts.open .prompts-content {
+    max-height: 500px;
+    padding: 0 20px 20px;
+}
+
+.prompts-list {
+    list-style: none;
+    padding: 0;
+}
+
+.prompts-list li {
+    padding: 6px 0 6px 30px;
+    position: relative;
+    font-size: 0.95em;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.4s;
+}
+
+.answer-prompts.open .prompts-list li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.answer-prompts.open .prompts-list li:nth-child(1) { transition-delay: 0.1s; }
+.answer-prompts.open .prompts-list li:nth-child(2) { transition-delay: 0.2s; }
+.answer-prompts.open .prompts-list li:nth-child(3) { transition-delay: 0.3s; }
+.answer-prompts.open .prompts-list li:nth-child(4) { transition-delay: 0.4s; }
+.answer-prompts.open .prompts-list li:nth-child(5) { transition-delay: 0.5s; }
+
+.prompts-list li::before {
+    content: "💡";
+    position: absolute;
+    left: 0;
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
+}
+
+/* ===== CUE CARD ===== */
+.cue-card {
+    background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+    border: 3px dashed #8e24aa;
+    border-radius: 15px;
+    padding: 35px 30px;
+    margin: 25px 0;
+    position: relative;
+    animation: cardFloat 4s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-5px) rotate(0.5deg); }
+}
+
+.cue-card::before {
+    content: "📋 CUE CARD";
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    background: #8e24aa;
+    color: white;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: bold;
+    box-shadow: 0 3px 8px rgba(142, 36, 170, 0.4);
+    animation: pulse 2s infinite;
+}
+
+.cue-card h3 {
+    color: #4a148c;
+    margin: 15px 0;
+    font-size: 1.4em;
+}
+
+.cue-card ul { padding-left: 25px; margin: 15px 0; }
+.cue-card li { margin-bottom: 10px; transition: transform 0.3s; }
+.cue-card li:hover { transform: translateX(8px); color: #6a1b9a; }
+
+.note-box {
+    background: rgba(255,255,255,0.8);
+    padding: 12px 18px;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-style: italic;
+    color: #4a148c;
+    border-left: 4px solid #8e24aa;
+}
+
+/* ===== TIMER ===== */
+.timer-container {
+    background: linear-gradient(135deg, #6a1b9a, #ab47bc);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    margin: 20px 0;
+    box-shadow: 0 8px 20px rgba(106, 27, 154, 0.3);
+}
+
+.timer-display {
+    font-size: 4em;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    margin: 15px 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    transition: color 0.3s;
+}
+
+.timer-display.warning { color: #ffeb3b; animation: pulse 0.5s infinite; }
+.timer-display.danger { color: #ff5252; animation: shake 0.3s infinite; }
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.timer-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.timer-btn {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: white;
+}
+
+.timer-btn.start { background: #43a047; }
+.timer-btn.pause { background: #fb8c00; }
+.timer-btn.reset { background: #e53935; }
+
+.timer-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* ===== CHALLENGE BOX ===== */
+.challenge-box {
+    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+    border: 2px dashed #ff9800;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+    text-align: center;
+}
+
+.challenge-box h3 {
+    color: #e65100;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+.challenge-btn {
+    background: linear-gradient(135deg, #ff9800, #ff5722);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 5px;
+}
+
+.challenge-btn:hover {
+    transform: scale(1.1) rotate(-2deg);
+    box-shadow: 0 6px 15px rgba(255, 87, 34, 0.4);
+}
+
+.challenge-result {
+    margin-top: 15px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    display: none;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== TIPS ===== */
+.tips-section {
+    background: linear-gradient(135deg, #e0f2f1, #b2dfdb);
+    padding: 35px;
+    border-radius: 15px;
+    margin: 40px 0;
+    box-shadow: var(--shadow);
+}
+
+.tips-section h2 {
+    color: var(--accent);
+    margin-bottom: 25px;
+    font-size: 2em;
+    text-align: center;
+}
+
+.tip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.tip-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.4s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.tip-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(0, 105, 92, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.tip-card:hover::before { opacity: 1; }
+
+.tip-card:hover {
+    transform: translateY(-10px) rotate(-1deg);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.tip-card h3 {
+    color: var(--accent);
+    margin-bottom: 12px;
+    font-size: 1.2em;
+    position: relative;
+    z-index: 1;
+}
+
+.tip-card p { position: relative; z-index: 1; }
+
+/* ===== CONFETTI ===== */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    z-index: 9999;
+    animation: confettiFall 3s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes confettiFall {
+    to {
+        top: 110vh;
+        transform: rotate(720deg);
+    }
+}
+
+/* ===== REACTION EMOJI ===== */
+.reaction-btn {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 1.5em;
+    cursor: pointer;
+    margin: 5px;
+    transition: all 0.3s;
+}
+
+.reaction-btn:hover {
+    transform: scale(1.3) rotate(10deg);
+    border-color: var(--gold);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.reaction-float {
+    position: fixed;
+    font-size: 2em;
+    pointer-events: none;
+    animation: floatUp 2s ease-out forwards;
+    z-index: 9999;
+}
+
+@keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-200px) scale(2); }
+}
+
+/* ===== FAREWELL ===== */
+.farewell {
+    background: linear-gradient(135deg, #1a237e, #c62828);
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease infinite;
+    color: white;
+    padding: 60px 30px;
+    text-align: center;
+    border-radius: 20px;
+    margin-top: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.farewell::before {
+    content: '✈️ 🇬🇧 ☕ 🎩 🌧️';
+    position: absolute;
+    font-size: 80px;
+    opacity: 0.1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    letter-spacing: 30px;
+}
+
+.farewell h2 {
+    font-size: 2.3em;
+    margin-bottom: 20px;
+    position: relative;
+    animation: bounce 2s infinite;
+}
+
+.farewell p {
+    font-size: 1.15em;
+    opacity: 0.95;
+    max-width: 750px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.farewell-btn {
+    margin-top: 25px;
+    padding: 15px 40px;
+    background: white;
+    color: var(--primary);
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.farewell-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* ===== RESPONSIVE ===== */
+@media print {
+    .nav-bar, .progress-container, .bg-clouds, .plane { display: none; }
+    .header { padding: 30px; }
+}
+
+@media (max-width: 768px) {
+    .header h1 { font-size: 2em; }
+    .part-header h2 { font-size: 1.5em; }
+    .part-header .duration { position: static; display: inline-block; margin-top: 10px; }
+    .vocab-grid { grid-template-columns: 1fr; }
+    .timer-display { font-size: 2.5em; }
+    .plane { font-size: 35px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Animated Clouds Background -->
+<div class="bg-clouds">
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+    <div class="plane">✈️</div>
+    <h1>🇬🇧 IELTS Speaking Adventure</h1>
+    <div class="subtitle">Final Lesson Before Your UK Trip – Let's Make It Fun!</div>
+    <div class="student-info">
+        <strong>👩‍🎓 Gulsum</strong> &nbsp;|&nbsp; <strong>📊 Level:</strong> B1/B2 &nbsp;|&nbsp; <strong>🎯 Focus:</strong> Travel & Culture
+    </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-container">
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-text" id="progressText">🚀 Let's start the adventure! (0% complete)</div>
+</div>
+
+<!-- NAVIGATION -->
+<div class="nav-bar">
+    <a href="#intro" class="tips">📖 Overview</a>
+    <a href="#part1" class="p1">Part 1</a>
+    <a href="#part2" class="p2">Part 2</a>
+    <a href="#part3" class="p3">Part 3</a>
+    <a href="#tips" class="tips">💡 Tips</a>
+</div>
+
+<div class="container">
+
+<!-- INTRO -->
+<section id="intro" class="intro-box reveal">
+    <h2>📖 Lesson Overview</h2>
+    <p>Today's lesson is all about <strong>your upcoming trip to England</strong>! We'll use this exciting topic to practice all three parts of the IELTS Academic Speaking test. You'll work on:</p>
+    <ul>
+        <li>🎯 <strong>Part 1:</strong> Answering short personal questions about your preparations and plans</li>
+        <li>🎯 <strong>Part 2:</strong> Speaking for 2 minutes about a travel experience (with a real timer!)</li>
+        <li>🎯 <strong>Part 3:</strong> Discussing bigger ideas about culture, tourism, and adapting abroad</li>
+    </ul>
+    <p style="margin-top: 15px;"><strong>🎮 How to use this lesson:</strong> Click on vocabulary cards to flip them, click "Show Prompts" to reveal hints, and use the timer for Part 2 practice!</p>
+</section>
+
+<!-- ====================== PART 1 ====================== -->
+<section id="part1" class="part-section p1-section reveal">
+    <div class="part-header p1">
+        <div class="duration">⏱ 4–5 minutes</div>
+        <h2>Part 1 – Introduction & Interview</h2>
+        <div class="part-desc">Short, familiar questions about you, your trip, and your plans. Answer in 2–4 sentences.</div>
+    </div>
+
+    <div class="topic-block">
+        <h3 class="topic-title"><span class="emoji">🧳</span> Topic 1: Preparing for the Trip</h3>
+        <div class="grammar-focus">
+            <strong>📚 Grammar Focus:</strong> Present Perfect (<em>have packed, have booked</em>), Present Continuous for future arrangements (<em>I'm leaving on Monday</em>), and Past Simple for completed actions.
+        </div>
+
+        <!-- Q1 -->
+        <div class="question-card">
+            <span class="q-number">1</span>
+            <p class="question-text">How are you feeling about your upcoming trip to England?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">excited</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">feeling very happy and enthusiastic</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">nervous</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">feeling worried or anxious</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">looking forward to</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">feeling happy about something in the future</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">a mix of emotions</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">feeling several different feelings at once</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Start with your main feeling: "Honestly, I'm feeling..."</li>
+                        <li>Explain why: "because this is my first time in..."</li>
+                        <li>Add a detail: "I've been preparing for weeks, so I feel..."</li>
+                        <li>End positively: "I can't wait to..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="question-card">
+            <span class="q-number">2</span>
+            <p class="question-text">What have you packed in your suitcase so far?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">essentials</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">the most important things you need</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">toiletries</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">things like soap, toothpaste, shampoo</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">raincoat / umbrella</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">clothing for rainy weather</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to pack light</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to bring only a few things</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">layers</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">several pieces of clothing worn on top of each other</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Mention categories: "I've packed clothes, documents, and..."</li>
+                        <li>Use Present Perfect: "So far, I've already packed..."</li>
+                        <li>Give a specific example: "For example, I brought... because..."</li>
+                        <li>Mention the weather: "Since England is often rainy, I also packed..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="question-card">
+            <span class="q-number">3</span>
+            <p class="question-text">Have you booked your accommodation already?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">accommodation</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a place to stay (hotel, flat, hostel)</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to book / to reserve</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to arrange something in advance</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">host family</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a local family that hosts a visitor</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">confirmation email</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">an email confirming your booking</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Answer directly: "Yes, I've already booked..." or "Not yet, I'm going to..."</li>
+                        <li>Give details: "I've reserved a... for... nights"</li>
+                        <li>Explain your choice: "I chose this because..."</li>
+                        <li>Mention the cost briefly: "It was quite affordable / a bit expensive"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="question-card">
+            <span class="q-number">4</span>
+            <p class="question-text">What are you taking with you that you can't travel without?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">indispensable</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">absolutely necessary</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">power adapter</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a device to charge electronics abroad</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">passport</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">official travel document</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to rely on</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to depend on something</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Name 2–3 items: "There are a few things I absolutely need, like..."</li>
+                        <li>Explain why: "I can't travel without... because..."</li>
+                        <li>Be personal: "I always bring... because it makes me feel..."</li>
+                        <li>Use emphasis: "The most important thing is definitely..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="question-card">
+            <span class="q-number">5</span>
+            <p class="question-text">How are you preparing for the weather in England?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">unpredictable</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">changes often, hard to predict</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">mild</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">not very cold or very hot</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">drizzle</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">light rain</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">waterproof</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">not letting water through</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to check the forecast</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to look at the weather prediction</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Describe the weather: "I know English weather is quite..."</li>
+                        <li>Explain your preparation: "So I'm planning to bring..."</li>
+                        <li>Mention clothing: "I've bought a... so I can..."</li>
+                        <li>Stay flexible: "I'll just have to be prepared for..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="question-card">
+            <span class="q-number">6</span>
+            <p class="question-text">Have you been learning any useful English phrases for your trip?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">useful expressions</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">phrases you can use in real situations</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to get by</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to manage in a difficult situation</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to practice</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to do something again and again to improve</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">confidence</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">feeling sure of yourself</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Be honest: "Yes, I've been practicing..." or "Not really, but..."</li>
+                        <li>Give examples: "For instance, I've learned how to..."</li>
+                        <li>Mention situations: "I want to be able to order food / ask for directions"</li>
+                        <li>Connect to lessons: "In our lessons, we've been working on..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="question-card">
+            <span class="q-number">7</span>
+            <p class="question-text">Who are you traveling with, or are you going alone?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">travel companion</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a person you travel with</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">solo trip</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a trip you take alone</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to meet up with</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to join someone at a place</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">independence</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">freedom to do things on your own</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>State clearly: "I'm traveling with..." or "I'm going by myself"</li>
+                        <li>Give a reason: "I chose this because..."</li>
+                        <li>Mention advantages: "The good thing about this is..."</li>
+                        <li>Share a feeling: "I feel... about it because..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="question-card">
+            <span class="q-number">8</span>
+            <p class="question-text">What's the first thing you want to do when you arrive in England?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to settle in</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to get comfortable in a new place</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">jet lag</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">tiredness after a long flight</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to explore</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to look around a new place</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to grab a bite</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to get something to eat (informal)</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to get over</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to recover from something</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Be specific: "The very first thing I'll do is..."</li>
+                        <li>Use future forms: "I'm going to... / I'll probably..."</li>
+                        <li>Explain why: "because after such a long flight, I need to..."</li>
+                        <li>Add a plan for later: "After that, I'd love to..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- MINI CHALLENGE -->
+        <div class="challenge-box">
+            <h3>🎮 Mini Challenge: Quick Fire Round!</h3>
+            <p>Answer these in ONE sentence each. Ready?</p>
+            <button class="challenge-btn" onclick="showChallenge(1)">Show Challenge 1</button>
+            <button class="challenge-btn" onclick="showChallenge(2)">Show Challenge 2</button>
+            <button class="challenge-btn" onclick="showChallenge(3)">Show Challenge 3</button>
+            <div class="challenge-result" id="challenge1">
+                <strong>🎯 Challenge:</strong> Use "have packed" in a sentence about your suitcase!
+            </div>
+            <div class="challenge-result" id="challenge2">
+                <strong>🎯 Challenge:</strong> Say one thing you're "looking forward to" in England!
+            </div>
+            <div class="challenge-result" id="challenge3">
+                <strong>🎯 Challenge:</strong> Name 3 essentials you can't travel without!
+            </div>
+        </div>
+    </div>
+
+    <div class="topic-block">
+        <h3 class="topic-title"><span class="emoji">🗺️</span> Topic 2: Plans & Expectations for the UK</h3>
+        <div class="grammar-focus">
+            <strong>📚 Grammar Focus:</strong> Future forms – <em>will, going to, present continuous for arrangements</em> (<em>I'm visiting London</em>), and <em>hope / expect / plan to</em>.
+        </div>
+
+        <!-- Q9 -->
+        <div class="question-card">
+            <span class="q-number">9</span>
+            <p class="question-text">Which cities or places in the UK are you planning to visit?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">itinerary</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a plan of a journey</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">landmark</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a famous place or building</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">countryside</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">rural areas outside cities</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">historic</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">important in history</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">bustling</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">full of activity and people</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Name places: "I'm planning to visit... and maybe..."</li>
+                        <li>Explain your choice: "I chose... because I've always wanted to see..."</li>
+                        <li>Mention variety: "I want to see both the city and..."</li>
+                        <li>Be flexible: "If I have time, I'd also like to..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="question-card">
+            <span class="q-number">10</span>
+            <p class="question-text">What are you most looking forward to during your trip?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to look forward to</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to feel excited about something in the future</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">experience</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">something that happens to you</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">atmosphere</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">the feeling of a place</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">cuisine</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">the food of a country or region</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">memorable</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">worth remembering</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Highlight one main thing: "What I'm most excited about is..."</li>
+                        <li>Explain why: "I've always dreamed of..."</li>
+                        <li>Give a detail: "I can already imagine myself..."</li>
+                        <li>Add a second thing: "Also, I really want to..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="question-card">
+            <span class="q-number">11</span>
+            <p class="question-text">Are you going to try any traditional British food?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">traditional dish</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a food that is typical of a country</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to taste</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to try a small amount of food</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">local specialty</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a food famous in a particular place</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">afternoon tea</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a British meal with tea, sandwiches, and cakes</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to be keen on</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to really like something</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Be enthusiastic: "Definitely! I really want to try..."</li>
+                        <li>Name dishes: "I've heard that... is very popular"</li>
+                        <li>Explain why: "I'm curious about... because..."</li>
+                        <li>Mention a situation: "I'd love to have afternoon tea at..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q12 -->
+        <div class="question-card">
+            <span class="q-number">12</span>
+            <p class="question-text">How long are you going to stay in the UK?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">a couple of weeks</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">about two weeks</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">duration</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">the length of time</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to fly back</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to return by plane</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">return ticket</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a ticket for going and coming back</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>State the duration: "I'll be there for about..."</li>
+                        <li>Give dates: "I'm arriving on... and flying back on..."</li>
+                        <li>Explain why: "This is the perfect amount of time because..."</li>
+                        <li>Add a feeling: "It feels... because..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q13 -->
+        <div class="question-card">
+            <span class="q-number">13</span>
+            <p class="question-text">Are you planning to visit any museums or historical sites?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">exhibition</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a public display of objects or art</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">heritage</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">the history and culture of a place</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">ancient</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">very old, from long ago</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">fascinating</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">extremely interesting</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">admission fee</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">the cost to enter</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Answer clearly: "Yes, I've made a list of..."</li>
+                        <li>Name places: "I'd really like to visit... because..."</li>
+                        <li>Explain your interest: "I'm interested in history, so..."</li>
+                        <li>Mention practical things: "I heard the... is free to enter"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q14 -->
+        <div class="question-card">
+            <span class="q-number">14</span>
+            <p class="question-text">What do you think will surprise you the most about England?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to be surprised by</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to feel unexpected about something</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">customs</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">traditional ways of behaving</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">polite</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">having good manners</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">queuing</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">waiting in a line</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">accent</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">the way people pronounce words</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Make a prediction: "I think what will surprise me most is..."</li>
+                        <li>Compare: "In my country, we..., but in England they..."</li>
+                        <li>Be curious: "I've heard that British people..., so I wonder if..."</li>
+                        <li>Stay open: "I'm open to anything new because..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q15 -->
+        <div class="question-card">
+            <span class="q-number">15</span>
+            <p class="question-text">Do you prefer traveling by plane or by train? Why?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">convenient</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">easy to use, suitable</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">scenic route</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a journey with beautiful views</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">time-consuming</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">taking a lot of time</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">eco-friendly</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">not harmful to the environment</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to board</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to get on a plane, train, or ship</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>State your preference: "I definitely prefer... because..."</li>
+                        <li>Give reasons: "It's faster / more comfortable / cheaper"</li>
+                        <li>Compare: "On the other hand, ... has the advantage of..."</li>
+                        <li>Be honest: "Although... can be..., I still prefer..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q16 -->
+        <div class="question-card">
+            <span class="q-number">16</span>
+            <p class="question-text">What do you usually do during long flights?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to pass the time</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to do something to make time go faster</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to binge-watch</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to watch many episodes of a show</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">noise-cancelling headphones</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">headphones that block sound</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to catch up on sleep</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to sleep more than usual</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>List activities: "I usually... and sometimes..."</li>
+                        <li>Use frequency: "Most of the time I..., but occasionally..."</li>
+                        <li>Be personal: "I find that... helps me..."</li>
+                        <li>Mention a routine: "I always try to... so that..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====================== PART 2 ====================== -->
+<section id="part2" class="part-section p2-section reveal">
+    <div class="part-header p2">
+        <div class="duration">⏱ 3–4 minutes (1 min prep + 2 min talk)</div>
+        <h2>Part 2 – The Long Turn (Cue Card)</h2>
+        <div class="part-desc">You'll get a topic card and have 1 minute to prepare. Then speak for 1–2 minutes using past tenses and descriptive language.</div>
+    </div>
+
+    <div class="topic-block">
+        <h3 class="topic-title"><span class="emoji">✈️</span> Topic 3: Past Travel Experiences</h3>
+        <div class="grammar-focus">
+            <strong>📚 Grammar Focus:</strong> Past tenses – Past Simple (<em>I went</em>), Past Continuous (<em>I was walking</em>), Past Perfect (<em>I had never seen</em>), and <em>used to</em>. Use descriptive adjectives and linking words.
+        </div>
+
+        <!-- TIMER -->
+        <div class="timer-container">
+            <h3>⏱️ Speaking Timer – Practice your 2-minute talk!</h3>
+            <div class="timer-display" id="timerDisplay">02:00</div>
+            <div class="timer-buttons">
+                <button class="timer-btn start" onclick="startTimer()">▶ Start</button>
+                <button class="timer-btn pause" onclick="pauseTimer()">⏸ Pause</button>
+                <button class="timer-btn reset" onclick="resetTimer()">🔄 Reset</button>
+            </div>
+        </div>
+
+        <!-- CUE CARD 1 -->
+        <div class="cue-card">
+            <h3>📋 Cue Card A: Describe a memorable trip you have taken.</h3>
+            <p>You should say:</p>
+            <ul>
+                <li>where you went and when</li>
+                <li>who you went with</li>
+                <li>what you did there</li>
+                <li>and explain why this trip was so memorable for you.</li>
+            </ul>
+            <div class="note-box">💬 Speak for 1–2 minutes. Use past tenses and descriptive language!</div>
+        </div>
+
+        <div class="vocab-section">
+            <div class="vocab-title">🔤 Click cards to flip!</div>
+            <div class="vocab-grid">
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><div class="vocab-word">unforgettable</div><div class="flip-hint">👆 click me</div></div>
+                        <div class="flip-card-back"><div class="vocab-def">impossible to forget</div></div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><div class="vocab-word">breathtaking</div><div class="flip-hint">👆 click me</div></div>
+                        <div class="flip-card-back"><div class="vocab-def">extremely beautiful</div></div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><div class="vocab-word">hospitality</div><div class="flip-hint">👆 click me</div></div>
+                        <div class="flip-card-back"><div class="vocab-def">friendly welcome to guests</div></div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><div class="vocab-word">to wander around</div><div class="flip-hint">👆 click me</div></div>
+                        <div class="flip-card-back"><div class="vocab-def">to walk without a plan</div></div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><div class="vocab-word">to get lost</div><div class="flip-hint">👆 click me</div></div>
+                        <div class="flip-card-back"><div class="vocab-def">to not know where you are</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="answer-prompts">
+            <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                <span class="arrow">▶</span> <span>💡 Show Answer Structure (2 minutes)</span>
+            </div>
+            <div class="prompts-content">
+                <ul class="prompts-list">
+                    <li><strong>Introduction (15 sec):</strong> "I'd like to talk about a trip I took to... It was about... ago."</li>
+                    <li><strong>Background (20 sec):</strong> "I went with... We decided to go because..."</li>
+                    <li><strong>Main events (50 sec):</strong> "During the trip, we... One day, we... I remember..."</li>
+                    <li><strong>Feelings (20 sec):</strong> "I felt... because..."</li>
+                    <li><strong>Conclusion (15 sec):</strong> "This trip was memorable because... I'll never forget..."</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Q17 follow-up -->
+        <div class="question-card">
+            <span class="q-number">17</span>
+            <p class="question-text">Follow-up: Would you like to go back to that place? Why or why not?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">nostalgic</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">feeling happy and sad about the past</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to revisit</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to visit again</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">different perspective</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a new way of seeing something</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Give a clear answer: "I'd love to go back because..."</li>
+                        <li>Or explain why not: "Actually, I think I'd prefer to explore somewhere new"</li>
+                        <li>Add a condition: "If I had the chance, I would definitely..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CUE CARD 2 -->
+        <div class="cue-card">
+            <h3>📋 Cue Card B: Describe a place you would really like to visit in the future.</h3>
+            <p>You should say:</p>
+            <ul>
+                <li>where this place is</li>
+                <li>when you would like to go there</li>
+                <li>what you would do there</li>
+                <li>and explain why you want to visit this place.</li>
+            </ul>
+            <div class="note-box">💬 This could be a place in the UK you want to visit during your trip!</div>
+        </div>
+
+        <div class="vocab-section">
+            <div class="vocab-title">🔤 Click cards to flip!</div>
+            <div class="vocab-grid">
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><div class="vocab-word">dream destination</div><div class="flip-hint">👆 click me</div></div>
+                        <div class="flip-card-back"><div class="vocab-def">the place you most want to visit</div></div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><div class="vocab-word">bucket list</div><div class="flip-hint">👆 click me</div></div>
+                        <div class="flip-card-back"><div class="vocab-def">a list of things to do before you die</div></div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><div class="vocab-word">picturesque</div><div class="flip-hint">👆 click me</div></div>
+                        <div class="flip-card-back"><div class="vocab-def">visually attractive, like a picture</div></div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><div class="vocab-word">vibrant</div><div class="flip-hint">👆 click me</div></div>
+                        <div class="flip-card-back"><div class="vocab-def">full of energy and life</div></div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><div class="vocab-word">to immerse yourself</div><div class="flip-hint">👆 click me</div></div>
+                        <div class="flip-card-back"><div class="vocab-def">to become fully involved in something</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="answer-prompts">
+            <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                <span class="arrow">▶</span> <span>💡 Show Answer Structure (2 minutes)</span>
+            </div>
+            <div class="prompts-content">
+                <ul class="prompts-list">
+                    <li><strong>Introduction:</strong> "A place I've always wanted to visit is..."</li>
+                    <li><strong>Location & timing:</strong> "It's located in... I'd love to go there..."</li>
+                    <li><strong>Activities:</strong> "While I'm there, I'd like to... I'd also enjoy..."</li>
+                    <li><strong>Why it appeals to you:</strong> "The main reason I want to go is..."</li>
+                    <li><strong>Ending:</strong> "I hope I'll get the chance to... someday."</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Q18 follow-up -->
+        <div class="question-card">
+            <span class="q-number">18</span>
+            <p class="question-text">Follow-up: How do you usually choose where to go on holiday?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">recommendation</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">advice about what is good</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">budget</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">the amount of money you can spend</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">research</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">studying something to find information</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Explain your process: "I usually start by..."</li>
+                        <li>Mention factors: "I consider things like..."</li>
+                        <li>Give an example: "For example, when I chose..., I..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CUE CARD 3 -->
+        <div class="cue-card">
+            <h3>📋 Cue Card C: Describe a travel experience that didn't go as planned.</h3>
+            <p>You should say:</p>
+            <ul>
+                <li>when and where it happened</li>
+                <li>what went wrong</li>
+                <li>how you dealt with the situation</li>
+                <li>and explain what you learned from this experience.</li>
+            </ul>
+            <div class="note-box">💬 Use past continuous and past perfect to tell the story!</div>
+        </div>
+
+        <div class="vocab-section">
+            <div class="vocab-title">🔤 Click cards to flip!</div>
+            <div class="vocab-grid">
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><div class="vocab-word">a mishap</div><div class="flip-hint">👆 click me</div></div>
+                        <div class="flip-card-back"><div class="vocab-def">a small accident or problem</div></div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><div class="vocab-word">to miss a connection</div><div class="flip-hint">👆 click me</div></div>
+                        <div class="flip-card-back"><div class="vocab-def">to not catch your next flight/train</div></div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><div class="vocab-word">to sort out</div><div class="flip-hint">👆 click me</div></div>
+                        <div class="flip-card-back"><div class="vocab-def">to solve a problem</div></div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><div class="vocab-word">frustrating</div><div class="flip-hint">👆 click me</div></div>
+                        <div class="flip-card-back"><div class="vocab-def">making you feel annoyed</div></div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><div class="vocab-word">lesson learned</div><div class="flip-hint">👆 click me</div></div>
+                        <div class="flip-card-back"><div class="vocab-def">something you learned from a mistake</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="answer-prompts">
+            <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                <span class="arrow">▶</span> <span>💡 Show Answer Structure (2 minutes)</span>
+            </div>
+            <div class="prompts-content">
+                <ul class="prompts-list">
+                    <li><strong>Set the scene:</strong> "This happened about... ago when I was traveling to..."</li>
+                    <li><strong>Describe the problem:</strong> "While we were..., suddenly..."</li>
+                    <li><strong>Your reaction:</strong> "At first, I felt... because..."</li>
+                    <li><strong>How you solved it:</strong> "So I decided to... Eventually, we..."</li>
+                    <li><strong>The lesson:</strong> "Looking back, I learned that..."</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Q19 follow-up -->
+        <div class="question-card">
+            <span class="q-number">19</span>
+            <p class="question-text">Follow-up: Do you think problems during travel can sometimes lead to good experiences?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">silver lining</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a positive aspect of a bad situation</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">adventure</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">an exciting or unusual experience</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to adapt</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to change to fit new conditions</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Give your opinion: "Actually, I do think that..."</li>
+                        <li>Give an example: "For instance, when..., it turned out to be..."</li>
+                        <li>Explain why: "Problems force us to... which can lead to..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====================== PART 3 ====================== -->
+<section id="part3" class="part-section p3-section reveal">
+    <div class="part-header p3">
+        <div class="duration">⏱ 4–5 minutes</div>
+        <h2>Part 3 – Two-Way Discussion</h2>
+        <div class="part-desc">Bigger, more abstract questions. Give longer answers (4–6 sentences) with examples and opinions.</div>
+    </div>
+
+    <div class="topic-block">
+        <h3 class="topic-title"><span class="emoji">🌍</span> Topic 4: Cultural Differences & Adapting Abroad</h3>
+        <div class="grammar-focus">
+            <strong>📚 Grammar Focus:</strong> Comparatives (<em>more polite than</em>), Modals of advice/possibility (<em>should, might, could</em>), and conditionals (<em>If you visit..., you should...</em>).
+        </div>
+
+        <!-- Q20 -->
+        <div class="question-card">
+            <span class="q-number">20</span>
+            <p class="question-text">What cultural differences do you expect between your country and the UK?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">cultural difference</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a way in which two cultures are not the same</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">tradition</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a belief or custom passed down</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">formal / informal</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">following rules / relaxed</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to adjust to</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to get used to something new</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">punctuality</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">being on time</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Compare areas: "I think there will be differences in terms of..."</li>
+                        <li>Give examples: "For example, in my country we..., but in England they..."</li>
+                        <li>Mention daily life: "Even small things like... might be different"</li>
+                        <li>Stay open-minded: "I'm curious to see how... compares to..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q21 -->
+        <div class="question-card">
+            <span class="q-number">21</span>
+            <p class="question-text">How might people in England be different from people in your country?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">reserved</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">slow to show emotions</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">welcoming</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">friendly to strangers</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">sense of humour</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">the way someone finds things funny</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to make small talk</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to chat about unimportant things</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">personal space</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">the distance people keep from others</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Use modals: "British people might be... compared to..."</li>
+                        <li>Give examples: "I've heard that they..., whereas we..."</li>
+                        <li>Be balanced: "On the one hand..., but on the other hand..."</li>
+                        <li>Stay respectful: "Of course, not everyone is the same, but generally..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q22 -->
+        <div class="question-card">
+            <span class="q-number">22</span>
+            <p class="question-text">What should a visitor avoid doing in British culture?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to offend</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to make someone upset or angry</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">rude</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">not polite</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to skip the queue</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to not wait in line</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">taboo</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">something not acceptable to discuss or do</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">etiquette</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">the rules of polite behaviour</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Give advice: "Visitors should definitely avoid..."</li>
+                        <li>Explain why: "This is considered... because..."</li>
+                        <li>Give examples: "For instance, it's rude to..."</li>
+                        <li>Add more: "Another thing to be careful about is..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q23 -->
+        <div class="question-card">
+            <span class="q-number">23</span>
+            <p class="question-text">How can someone adapt to a new culture quickly?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to blend in</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to look or act like others</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">open-minded</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">willing to accept new ideas</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to observe</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to watch carefully</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">local customs</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">traditional behaviours of a place</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">culture shock</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">confusion when experiencing a new culture</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Give strategies: "I think the best way is to..."</li>
+                        <li>Use modals: "You should... and you could also..."</li>
+                        <li>Mention mindset: "Being open-minded is essential because..."</li>
+                        <li>Give a personal plan: "When I arrive, I plan to..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q24 -->
+        <div class="question-card">
+            <span class="q-number">24</span>
+            <p class="question-text">Do you think it's important to learn the local language before traveling?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">basic phrases</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">simple useful sentences</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to communicate</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to share information with others</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to show respect</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to be polite to someone</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">barrier</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">something that blocks communication</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Give opinion: "I definitely think it's important because..."</li>
+                        <li>Be balanced: "Of course, you don't need to be fluent, but..."</li>
+                        <li>Give reasons: "Even knowing a few phrases shows..."</li>
+                        <li>Personal example: "That's why I've been learning..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q25 -->
+        <div class="question-card">
+            <span class="q-number">25</span>
+            <p class="question-text">What challenges might you face when living in a foreign country?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">homesickness</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">missing your home and family</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">language barrier</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">difficulty communicating</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to struggle with</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to have difficulty with something</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to overcome</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to successfully deal with a problem</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">loneliness</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">feeling alone</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>List challenges: "There could be several challenges, such as..."</li>
+                        <li>Explain each: "For example,... can be difficult because..."</li>
+                        <li>Suggest solutions: "However, this can be overcome by..."</li>
+                        <li>Be personal: "I'm a bit worried about..., but I think..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q26 -->
+        <div class="question-card">
+            <span class="q-number">26</span>
+            <p class="question-text">How could technology help travelers adapt to new cultures?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">translation app</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">an app that translates languages</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">GPS / navigation</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">system to find your way</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to rely on</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to depend on something</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">instant access</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">immediate ability to get information</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to connect with</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to communicate with someone</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Give examples: "Technology can help in many ways, such as..."</li>
+                        <li>Be specific: "For instance, apps like... can help you..."</li>
+                        <li>Mention communication: "Also, you can... which makes it easier to..."</li>
+                        <li>Balance: "However, we shouldn't rely on it too much because..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q27 -->
+        <div class="question-card">
+            <span class="q-number">27</span>
+            <p class="question-text">Is it better to travel alone or with a group when visiting a new country?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">flexibility</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">ability to change easily</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">safety in numbers</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">being safer when with others</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to compromise</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to reach an agreement by giving a little</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">independence</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">freedom to make your own choices</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">shared experience</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">something you experience with others</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Present both sides: "Both options have advantages..."</li>
+                        <li>Compare: "Traveling alone gives you..., but with a group you..."</li>
+                        <li>Give opinion: "Personally, I prefer... because..."</li>
+                        <li>Depend on situation: "It really depends on... For example,..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q28 -->
+        <div class="question-card">
+            <span class="q-number">28</span>
+            <p class="question-text">What advice would you give to someone visiting the UK for the first time?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to recommend</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to suggest something is good</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to bear in mind</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to remember to consider something</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">public transport</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">buses, trains, etc.</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to make the most of</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to use something as much as possible</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Give top tips: "I would definitely advise them to..."</li>
+                        <li>Be practical: "First of all, they should... Also, it's worth..."</li>
+                        <li>Use conditionals: "If they have time, they should..."</li>
+                        <li>End with encouragement: "Most importantly, they should..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q29 -->
+        <div class="question-card">
+            <span class="q-number">29</span>
+            <p class="question-text">How might your expectations change after actually being in England?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">expectation</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">what you think will happen</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">reality</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">what actually happens</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to exceed expectations</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to be better than expected</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to be disappointed</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to feel sad because something wasn't as good as expected</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">stereotype</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a fixed idea about a group of people</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Speculate: "My expectations might change because..."</li>
+                        <li>Give examples: "For example, I expect..., but it could turn out..."</li>
+                        <li>Be open: "I'm prepared for the possibility that..."</li>
+                        <li>Reflect: "Sometimes reality is different from... and that's okay"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="topic-block">
+        <h3 class="topic-title"><span class="emoji">🌐</span> Topic 5: Tourism & Its Impact</h3>
+        <div class="grammar-focus">
+            <strong>📚 Grammar Focus:</strong> Conditionals (1st: <em>If tourism increases, local businesses will benefit</em>; 2nd: <em>If everyone traveled abroad, it would...</em>), Passive voice (<em>Historic sites are visited by millions</em>).
+        </div>
+
+        <!-- Q30 -->
+        <div class="question-card">
+            <span class="q-number">30</span>
+            <p class="question-text">How has tourism changed popular destinations in recent years?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">tourist destination</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a place many tourists visit</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">overcrowded</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">too full of people</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to boost the economy</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to help the economy grow</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">commercialized</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">made mainly for profit</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">infrastructure</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">basic systems like roads, transport</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Use Present Perfect: "Tourism has changed... in many ways"</li>
+                        <li>Give examples: "For instance, cities like... have become..."</li>
+                        <li>Show both sides: "On the positive side,... but on the negative side..."</li>
+                        <li>Mention specific changes: "Many places have built... to accommodate..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q31 -->
+        <div class="question-card">
+            <span class="q-number">31</span>
+            <p class="question-text">If more people visit a country, what effects might this have?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">positive / negative impact</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">good / bad effect</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to generate income</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to create money</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">environmental damage</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">harm to nature</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">job opportunities</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">chances to get work</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">pollution</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">damage caused by waste</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Use conditional: "If more people visit, it could lead to..."</li>
+                        <li>List effects: "There could be both positive and negative effects"</li>
+                        <li>Give examples: "For example, more tourists means..."</li>
+                        <li>Conclude: "Overall, I think the key is to..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q32 -->
+        <div class="question-card">
+            <span class="q-number">32</span>
+            <p class="question-text">Should governments limit the number of tourists in certain areas?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to restrict</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to limit or control</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to preserve</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to protect something</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">sustainable tourism</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">tourism that doesn't harm the environment</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">heritage site</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a place of historical importance</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to regulate</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to control by rules</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>State position: "I think in some cases, governments should..."</li>
+                        <li>Give reasons: "This is important because..."</li>
+                        <li>Give examples: "In cities like..., too many tourists have caused..."</li>
+                        <li>Balance: "However, we also need to consider..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q33 -->
+        <div class="question-card">
+            <span class="q-number">33</span>
+            <p class="question-text">What would happen if everyone traveled internationally?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">carbon footprint</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">amount of CO₂ produced by a person</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">global village</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">the world connected by communication</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">cultural exchange</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">sharing culture between countries</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">unrealistic</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">not possible in reality</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Use 2nd conditional: "If everyone traveled internationally, it would..."</li>
+                        <li>Imagine consequences: "This could lead to..."</li>
+                        <li>Show both sides: "While it would be great for..., it might cause..."</li>
+                        <li>Be realistic: "Of course, this is unlikely because..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q34 -->
+        <div class="question-card">
+            <span class="q-number">34</span>
+            <p class="question-text">How can tourists minimize their negative impact on local communities?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to respect</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to treat with consideration</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">eco-tourism</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">responsible travel to natural areas</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to support local businesses</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to buy from local shops</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">responsible traveler</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">a tourist who cares about impact</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to leave no trace</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to not damage the environment</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Give strategies: "Tourists can... by..."</li>
+                        <li>Be specific: "For example, instead of..., they could..."</li>
+                        <li>Mention attitude: "It's also important to..."</li>
+                        <li>Conclude: "By doing these things, tourists can..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q35 -->
+        <div class="question-card">
+            <span class="q-number">35</span>
+            <p class="question-text">Do you think space tourism will become common in the future?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">space tourism</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">traveling to space for fun</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">affordable</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">not too expensive</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">breakthrough</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">an important discovery</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">exclusive</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">only for a few people</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">in the near future</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">soon</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Give opinion: "I think it might / might not become common because..."</li>
+                        <li>Consider cost: "At the moment, it's very expensive, but..."</li>
+                        <li>Predict: "In the next... years, we might see..."</li>
+                        <li>Give reasons: "This is because technology..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q36 -->
+        <div class="question-card">
+            <span class="q-number">36</span>
+            <p class="question-text">What are the advantages and disadvantages of working in the tourism industry?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">rewarding</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">making you feel satisfied</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">demanding</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">requiring a lot of effort</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to interact with</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to communicate with people</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">seasonal work</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">work only at certain times of year</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">career prospects</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">opportunities for future work</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Present both sides: "There are several pros and cons..."</li>
+                        <li>List advantages: "On the one hand, you get to..."</li>
+                        <li>List disadvantages: "On the other hand, it can be..."</li>
+                        <li>Conclude: "Overall, I think it's a good career for people who..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q37 -->
+        <div class="question-card">
+            <span class="q-number">37</span>
+            <p class="question-text">If you could change one thing about international travel, what would it be?</p>
+            <div class="vocab-section">
+                <div class="vocab-title">🔤 Click cards to flip!</div>
+                <div class="vocab-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to simplify</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to make something easier</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">visa requirements</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">rules for entering a country</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">affordable</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">reasonably priced</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">environmentally friendly</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">not harmful to the environment</div></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class="vocab-word">to imagine</div><div class="flip-hint">👆 click me</div></div>
+                            <div class="flip-card-back"><div class="vocab-def">to think of something that isn't real</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-prompts">
+                <div class="prompts-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="arrow">▶</span> <span>💡 Show Answer Prompts</span>
+                </div>
+                <div class="prompts-content">
+                    <ul class="prompts-list">
+                        <li>Use 2nd conditional: "If I could change one thing, I would..."</li>
+                        <li>Explain why: "This is because currently..."</li>
+                        <li>Describe the result: "This would make travel..."</li>
+                        <li>Be creative: "I imagine a world where..."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====================== TIPS ====================== -->
+<section id="tips" class="tips-section reveal">
+    <h2>💡 Speaking Tips for Your Trip & Beyond</h2>
+    <div class="tip-grid">
+        <div class="tip-card">
+            <h3>🎤 Fluency Over Accuracy</h3>
+            <p>Don't worry about making small mistakes. Focus on keeping the conversation going. Native speakers make mistakes too!</p>
+        </div>
+        <div class="tip-card">
+            <h3>🧠 Buy Time Naturally</h3>
+            <p>Use phrases like: "That's an interesting question...", "Let me think about that...", "Well, I'd say..."</p>
+        </div>
+        <div class="tip-card">
+            <h3>📖 Extend Your Answers</h3>
+            <p>Don't just say "yes" or "no". Always add: a reason, an example, or a personal story.</p>
+        </div>
+        <div class="tip-card">
+            <h3>🔄 Paraphrase</h3>
+            <p>If you forget a word, describe it! "The thing you use to..." is perfectly fine.</p>
+        </div>
+        <div class="tip-card">
+            <h3>😊 Be Confident</h3>
+            <p>Smile, make eye contact, and speak clearly. Your personality matters as much as your grammar!</p>
+        </div>
+        <div class="tip-card">
+            <h3>🇬🇧 Real-Life Practice</h3>
+            <p>In England, talk to locals! Ask for recommendations, order food, chat with your host. Every conversation is practice.</p>
+        </div>
+        <div class="tip-card">
+            <h3>📝 Useful Phrases for the UK</h3>
+            <p><em>"Cheers!"</em> = Thank you (informal)<br><em>"Excuse me"</em> = to get attention<br><em>"Sorry"</em> = British people say this a lot!<br><em>"Lovely"</em> = very nice</p>
+        </div>
+        <div class="tip-card">
+            <h3>🎧 Listen Actively</h3>
+            <p>If you don't understand, say: "Could you repeat that, please?" or "Sorry, I didn't catch that." It's completely okay!</p>
+        </div>
+    </div>
+</section>
+
+<!-- REACTION EMOJIS -->
+<div style="text-align: center; margin: 30px 0;">
+    <p style="font-size: 1.2em; margin-bottom: 10px; color: #666;">How are you feeling about the lesson? Click an emoji!</p>
+    <button class="reaction-btn" onclick="floatReaction(event, '🎉')">🎉</button>
+    <button class="reaction-btn" onclick="floatReaction(event, '😄')">😄</button>
+    <button class="reaction-btn" onclick="floatReaction(event, '🤩')">🤩</button>
+    <button class="reaction-btn" onclick="floatReaction(event, '✈️')">✈️</button>
+    <button class="reaction-btn" onclick="floatReaction(event, '🇬🇧')">🇬🇧</button>
+    <button class="reaction-btn" onclick="floatReaction(event, '💪')">💪</button>
+</div>
+
+<!-- FAREWELL -->
+<div class="farewell reveal">
+    <h2>✈️ Have an Amazing Trip, Gulsum!</h2>
+    <p>Remember: every conversation in England is a chance to practice. Don't be afraid to make mistakes — that's how we learn! Take photos, try new foods, talk to people, and enjoy every moment. We'll continue our lessons when you're back. Safe travels and <strong>break a leg!</strong> 🇬🇧💙</p>
+    <button class="farewell-btn" onclick="launchConfetti()">🎉 Celebrate Lesson Completion!</button>
+</div>
+
+</div>
+
+<script>
+// ===== TIMER =====
+let timerInterval;
+let timeLeft = 120; // 2 minutes
+let isRunning = false;
+
+function updateTimerDisplay() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    const display = document.getElementById('timerDisplay');
+    display.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    
+    // Change color based on time left
+    display.classList.remove('warning', 'danger');
+    if (timeLeft <= 10) {
+        display.classList.add('danger');
+    } else if (timeLeft <= 30) {
+        display.classList.add('warning');
+    }
+}
+
+function startTimer() {
+    if (isRunning) return;
+    isRunning = true;
+    timerInterval = setInterval(() => {
+        if (timeLeft > 0) {
+            timeLeft--;
+            updateTimerDisplay();
+        } else {
+            pauseTimer();
+            launchConfetti();
+            alert('⏰ Time\'s up! Great job speaking for 2 minutes!');
+        }
+    }, 1000);
+}
+
+function pauseTimer() {
+    isRunning = false;
+    clearInterval(timerInterval);
+}
+
+function resetTimer() {
+    pauseTimer();
+    timeLeft = 120;
+    updateTimerDisplay();
+}
+
+// ===== CONFETTI =====
+function launchConfetti() {
+    const colors = ['#f9a825', '#c62828', '#1a237e', '#43a047', '#ab47bc', '#ff9800'];
+    for (let i = 0; i < 100; i++) {
+        setTimeout(() => {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+            if (Math.random() > 0.5) {
+                confetti.style.borderRadius = '50%';
+            }
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 4000);
+        }, i * 30);
+    }
+}
+
+// ===== FLOATING REACTIONS =====
+function floatReaction(event, emoji) {
+    const rect = event.target.getBoundingClientRect();
+    const floater = document.createElement('div');
+    floater.className = 'reaction-float';
+    floater.textContent = emoji;
+    floater.style.left = rect.left + 'px';
+    floater.style.top = rect.top + 'px';
+    document.body.appendChild(floater);
+    setTimeout(() => floater.remove(), 2000);
+}
+
+// ===== SCROLL REVEAL =====
+function revealOnScroll() {
+    const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        const revealPoint = 150;
+        if (elementTop < windowHeight - revealPoint) {
+            el.classList.add('active');
+        }
+    });
+}
+
+// ===== PROGRESS BAR =====
+function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    document.getElementById('progressFill').style.width = progress + '%';
+    
+    let message = '';
+    if (progress < 15) message = '🚀 Let\'s start the adventure!';
+    else if (progress < 35) message = '✈️ Great progress on Part 1!';
+    else if (progress < 55) message = '📋 You\'re doing amazing in Part 2!';
+    else if (progress < 75) message = '🌍 Almost there - Part 3 discussion!';
+    else if (progress < 90) message = '💡 Tips and tricks section!';
+    else message = '🎉 You\'re a speaking superstar!';
+    
+    document.getElementById('progressText').textContent = `${message} (${Math.round(progress)}% complete)`;
+}
+
+// ===== CHALLENGE BOX =====
+function showChallenge(num) {
+    const result = document.getElementById('challenge' + num);
+    result.style.display = 'block';
+    result.style.animation = 'none';
+    setTimeout(() => result.style.animation = 'slideUp 0.5s ease-out', 10);
+}
+
+// ===== EVENT LISTENERS =====
+window.addEventListener('scroll', () => {
+    revealOnScroll();
+    updateProgress();
+});
+
+window.addEventListener('load', () => {
+    revealOnScroll();
+    updateProgress();
+    updateTimerDisplay();
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll('.nav-bar a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+</script>
+
+</body>
+</html>
